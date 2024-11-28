@@ -1,0 +1,53 @@
+public class OrdenReabastecimiento {
+    private String idOrden;
+    private Producto producto;
+    private int cantidad;
+    private String fechaOrden;
+    private String estado;
+
+    // Constructor
+    public OrdenReabastecimiento(String idOrden, Producto producto, int cantidad, String fechaOrden, String estado) {
+        this.idOrden = idOrden;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.fechaOrden = fechaOrden;
+        this.estado = estado;
+    }
+
+    // Getters y Setters
+    public String getIdOrden() {
+        return idOrden;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public String getFechaOrden() {
+        return fechaOrden;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public void setFechaOrden(String fechaOrden) {
+        this.fechaOrden = fechaOrden;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+}

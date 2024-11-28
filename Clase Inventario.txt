@@ -1,0 +1,90 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Inventario {
+    private List<Producto> productos;
+
+    // Constructor
+    public Inventario() {
+        this.productos = new ArrayList<>();
+    }
+
+    // Agregar un producto al inventario
+    public void agregarProducto(Producto producto) {
+        if (buscarProductoPorCodigo(producto.getCodigo()) == null) {
+            productos.add(producto);
+            System.out.println("Producto agregado con éxito.");
+        } else {
+            System.out.println("Error: Ya existe un producto con ese código.");
+        }
+    }
+
+    // Buscar un producto por código
+    public Producto buscarProductoPorCodigo(String codigo) {
+        for (Producto producto : productos) {
+            if (producto.getCodigo().equals(codigo)) {
+                return producto;
+            }
+        }
+        return null;
+    }
+
+    // Modificar un producto existente
+    public void modificarProducto(String codigo, String nuevoNombre, double nuevoPrecio, int nuevoStock, int nuevoStockMinimo) {
+        Producto producto = buscarProductoPorCodigo(codigo);
+        if (producto != null) {
+            producto.setNombre(nuevoNombre);
+            producto.setPrecio(nuevoPrecio);
+            producto.setStock(nuevoStock);
+            producto.setStockMinimo(nuevoStockMinimo);
+            System.out.println("Producto modificado con éxito.");
+        } else {
+            System.out.println("Error: Producto no encontrado.");
+        }
+    }
+
+    // Eliminar un producto del inventario
+    public void eliminarProducto(String codigo) {
+        Producto producto = buscarProductoPorCodigo(codigo);
+        if (producto != null) {
+            productos.remove(producto);
+            System.out.println("Producto eliminado con éxito.");
+        } else {
+            System.out.println("Error: Producto no encontrado.");
+        }
+    }
+
+    // Mostrar todos los productos
+    public void mostrarProductos() {
+        if (productos.isEmpty()) {
+            System.out.println("No hay productos en el inventario.");
+        } else {
+            for (Producto producto : productos) {
+                System.out.println(producto);
+            }
+        }
+    }
+
+    // Calcular el valor total del inventario
+    public double calcularValorTotal() {
+        double valorTotal = 0;
+        for (Producto producto : productos) {
+            valorTotal += producto.getPrecio() * producto.getStock();
+        }
+        return valorTotal;
+    }
+
+    // Mostrar productos con stock bajo
+    public void mostrarProductosConStockBajo() {
+        boolean hayStockBajo = false;
+        for (Producto producto : productos) {
+            if (producto.necesitaReabastecimiento()) {
+                System.out.println("Producto con stock bajo: " + producto);
+                hayStockBajo = true;
+            }
+        }
+        if (!hayStockBajo) {
+            System.out.println("No hay productos con stock bajo.");
+        }
+    }
+}
